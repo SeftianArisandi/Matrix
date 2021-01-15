@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrix</title>
+</head>
+<body>
+    <div>
+        <label for="">Masukan dimensi matrix : </label>
+        <input type="text" id="dimensiMatrix">
+        <button onclick="generateMatrix(document.getElementById('dimensiMatrix').value)">Generate</button>
+    </div>
+
+    <div id=hasilGenerate>
+        <p>Matrix 1</p>
+        <table>
+            <tbody id="m1"></tbody>
+        </table>
+        
+        <p>Matrix 2</p>
+        <table>
+            <tbody id="m2"></tbody>
+        </table>
+
+        <p><button onclick="tambah(document.getElementById('dimensiMatrix').value)">Tambah</button></p>
+    </div>
+
+    <div>
+        <p>Hasil</p>
+        <table>
+            <tbody id="m3"></tbody>
+        </table>
+    </div>
+
+<script src="exam.js"></script>
+</body>
+</html>
