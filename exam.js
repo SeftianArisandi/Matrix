@@ -34,119 +34,44 @@ function cetakTable (x) {
 }
 
 function tambah (value) {
-    if (value == "1") {
-        // matrix1
-        const m1b1k1 = parseInt(document.querySelector('#m1 #tr0 #td0 #input0').value);
+    let getMatrix1 = [];
+    let getMatrix2 = [];
+    let resultMatrix = [];
 
-        // matrix2
-        const m2b1k1 = parseInt(document.querySelector('#m2 #tr0 #td0 #input0').value);
-
-        // hasil
-        const m3b1k1 = m1b1k1 + m2b1k1;
-        cetakHasil1(m3b1k1);
-    }else if (value == "2") {
-        // matrix1
-        const m1b1k1 = parseInt(document.querySelector('#m1 #tr0 #td0 #input0').value);
-        const m1b1k2 = parseInt(document.querySelector('#m1 #tr0 #td1 #input1').value);
-        const m1b2k1 = parseInt(document.querySelector('#m1 #tr1 #td0 #input0').value);
-        const m1b2k2 = parseInt(document.querySelector('#m1 #tr1 #td1 #input1').value);
-
-        // matrix2
-        const m2b1k1 = parseInt(document.querySelector('#m2 #tr0 #td0 #input0').value);
-        const m2b1k2 = parseInt(document.querySelector('#m2 #tr0 #td1 #input1').value);
-        const m2b2k1 = parseInt(document.querySelector('#m2 #tr1 #td0 #input0').value);
-        const m2b2k2 = parseInt(document.querySelector('#m2 #tr1 #td1 #input1').value);
-
-        // jumlah
-        const m3b1k1 = m1b1k1 + m2b1k1;
-        const m3b1k2 = m1b1k2 + m2b1k2;
-        const m3b2k1 = m1b2k1 + m2b2k1;
-        const m3b2k2 = m1b2k2 + m2b2k2;
-
-        // cetak
-        cetakHasil2(m3b1k1,m3b1k2,m3b2k1,m3b2k2);
-    }else if (value == "3") {
-        // matrix1
-        const m1b1k1 = parseInt(document.querySelector('#m1 #tr0 #td0 #input0').value);
-        const m1b1k2 = parseInt(document.querySelector('#m1 #tr0 #td1 #input1').value);
-        const m1b1k3 = parseInt(document.querySelector('#m1 #tr0 #td2 #input2').value);
-        const m1b2k1 = parseInt(document.querySelector('#m1 #tr1 #td0 #input0').value);
-        const m1b2k2 = parseInt(document.querySelector('#m1 #tr1 #td1 #input1').value);
-        const m1b2k3 = parseInt(document.querySelector('#m1 #tr1 #td2 #input2').value);
-        const m1b3k1 = parseInt(document.querySelector('#m1 #tr2 #td0 #input0').value);
-        const m1b3k2 = parseInt(document.querySelector('#m1 #tr2 #td1 #input1').value);
-        const m1b3k3 = parseInt(document.querySelector('#m1 #tr2 #td2 #input2').value);
-
-        // matrix2
-        const m2b1k1 = parseInt(document.querySelector('#m2 #tr0 #td0 #input0').value);
-        const m2b1k2 = parseInt(document.querySelector('#m2 #tr0 #td1 #input1').value);
-        const m2b1k3 = parseInt(document.querySelector('#m2 #tr0 #td2 #input2').value);
-        const m2b2k1 = parseInt(document.querySelector('#m2 #tr1 #td0 #input0').value);
-        const m2b2k2 = parseInt(document.querySelector('#m2 #tr1 #td1 #input1').value);
-        const m2b2k3 = parseInt(document.querySelector('#m2 #tr1 #td2 #input2').value);
-        const m2b3k1 = parseInt(document.querySelector('#m2 #tr2 #td0 #input0').value);
-        const m2b3k2 = parseInt(document.querySelector('#m2 #tr2 #td1 #input1').value);
-        const m2b3k3 = parseInt(document.querySelector('#m2 #tr2 #td2 #input2').value);
-
-        // jumlah
-        const m3b1k1 = m1b1k1 + m2b1k1;
-        const m3b1k2 = m1b1k2 + m2b1k2;
-        const m3b1k3 = m1b1k3 + m2b1k3;
-        const m3b2k1 = m1b2k1 + m2b2k1;
-        const m3b2k2 = m1b2k2 + m2b2k2;
-        const m3b2k3 = m1b2k3 + m2b2k3;
-        const m3b3k1 = m1b3k1 + m2b3k1;
-        const m3b3k2 = m1b3k2 + m2b3k2;
-        const m3b3k3 = m1b3k3 + m2b3k3;
-
-        // cetak
-        cetakHasil3(m3b1k1,m3b1k2,m3b1k3,m3b2k1,m3b2k2,m3b2k3,m3b3k1,m3b3k2,m3b3k3);
+    for (let i = 0; i < value; i++) {
+        for (let n = 0; n < value; n++) {
+            getMatrix1.push(parseInt(document.querySelector(`#m1 #tr${i} #td${n} #input${n}`).value));
+        }
     }
+
+    for (let i = 0; i < value; i++) {
+        for (let n = 0; n < value; n++) {
+            getMatrix2.push(parseInt(document.querySelector(`#m2 #tr${i} #td${n} #input${n}`).value));
+        }
+    }
+
+    for (let i = 0; i < (value*value); i++) {
+        resultMatrix.push(getMatrix1[i] + getMatrix2[i]);
+    }
+
+    cetakHasil(resultMatrix,value);
 }
 
-function cetakHasil1 (m3b1k1) {
+function cetakHasil (rm,v) {
     document.getElementById('m3').hidden = false;
 
-    hasil = `<tr>
-        <td><input type="text" value="${m3b1k1}"></td>
-    </tr>`
+    let tdH = '';
+    let trH = '';
+    let count = 0;
+    
+    for (let a = 0; a < v; a++) {    
+        for (let i = 0; i < v; i++) {
+            tdH += `<td><input type="text" value="${rm[count]}"></td>`;
+            ++count;
+        }
+        trH += `<tr>${tdH}</tr>`;
+        tdH = '';
+    }
 
-    document.getElementById('m3').innerHTML = hasil;
-}
-
-function cetakHasil2 (m3b1k1,m3b1k2,m3b2k1,m3b2k2) {
-    document.getElementById('m3').hidden = false;
-
-    hasil = `<tr>
-        <td><input type="text" value="${m3b1k1}"></td>
-        <td><input type="text" value="${m3b1k2}"></td>
-    </tr>
-    <tr>
-        <td><input type="text" value="${m3b2k1}"></td>
-        <td><input type="text" value="${m3b2k2}"></td>
-    </tr>`
-
-    document.getElementById('m3').innerHTML = hasil;
-}
-
-function cetakHasil3(m3b1k1,m3b1k2,m3b1k3,m3b2k1,m3b2k2,m3b2k3,m3b3k1,m3b3k2,m3b3k3) {
-    document.getElementById('m3').hidden = false;
-
-    hasil = `<tr>
-        <td><input type="text" value="${m3b1k1}"></td>
-        <td><input type="text" value="${m3b1k2}"></td>
-        <td><input type="text" value="${m3b1k3}"></td>
-    </tr>
-    <tr>
-        <td><input type="text" value="${m3b2k1}"></td>
-        <td><input type="text" value="${m3b2k2}"></td>
-        <td><input type="text" value="${m3b2k3}"></td>
-    </tr>
-    <tr>
-        <td><input type="text" value="${m3b3k1}"></td>
-        <td><input type="text" value="${m3b3k2}"></td>
-        <td><input type="text" value="${m3b3k3}"></td>
-    </tr>`
-
-    document.getElementById('m3').innerHTML = hasil;
+    document.getElementById('m3').innerHTML = trH;
 }
